@@ -1,0 +1,35 @@
+# 常规训练 18类预训练模型
+# IO config
+_BASE_: IU_base_cfg.yml
+save_dir: result/IU/IU_xrv18
+record_dir: records/IU/
+description: normal IU xrv18
+# data loader config
+dataset_name: iu_xray
+tag_size: 48
+max_seq_length: 60
+threshold: 3
+num_workers: 4
+batch_size: 16
+# model config
+num_slot: 18
+d_model: 512
+d_ff: 512
+num_heads: 8
+num_layers: 6
+dropout: 0.1
+logit_layers: 1
+# trainer config
+n_gpu: 1
+epochs: 100
+save_period: 1
+log_period: 300
+# optimization config
+optim: Adam
+lr_ed: 0.0001
+lr_ve: 0.00005
+# Learning Rate Scheduler
+lr_scheduler: StepLR
+StepLR_step: 50
+StepLR_rate: 0.1
+seed: 123

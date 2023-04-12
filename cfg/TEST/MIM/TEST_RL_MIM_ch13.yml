@@ -1,0 +1,36 @@
+# 测试强化学习后的rl32——xrv18
+_BASE_: TEST_MIM_base.yml
+# IO config
+image_dir: /ssd2/jyd_data/dataset/MIMIC/images/mimic_cxr/images/
+ann_path: /ssd2/jyd_data/dataset/MIMIC/annotation.json
+visual_path: /ssd2/jyd_data/dataset/MIMIC/preprocess/mim_ch13_id_visual.npy
+tag_path: /ssd2/jyd_data/dataset/MIMIC/TAG/MIMIC_tag_id.npy
+save_dir: result/test/mimic/test_rl_ch13
+record_dir: records/test/mim/test_rl_ch13/heatmap
+description: test_rl_ch13
+# data loader config
+dataset_name: mimic_cxr
+tag_size: 59
+tag_topk: 7
+batch_size: 1
+# model config
+num_slot: 13
+d_model: 512
+d_ff: 512
+num_heads: 8
+num_layers: 6
+dropout: 0.1
+# trainer config
+epochs: 50
+# optimization config
+optim: Adam
+lr_ed: 0.00001
+lr_ve: 0.000001
+# Learning Rate Scheduler
+lr_scheduler: StepLR
+StepLR_step: 1
+StepLR_rate: 0.8
+seed: 456789
+n_gpu: 1
+load: /ssd2/jyd_data/Try/dis_tag_RL/result/mimic/RL_whole_ch13_bs32/model_best.pth
+beam_size: 1

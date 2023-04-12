@@ -1,0 +1,38 @@
+# 常规训练 IU 基础配置
+# IO config
+image_dir: /ssd2/jyd_data/dataset/iu_xray/images/
+ann_path: /ssd2/jyd_data/dataset/iu_xray/annotation.json
+visual_path: /ssd2/jyd_data/dataset/iu_xray/iu_xray_visual.npy
+tag_path: /ssd2/jyd_data/dataset/iu_xray/IU_tag_id.npy
+save_dir: result/IU/IU_base
+record_dir: records/IU/
+description: normal IU base
+# data loader config
+dataset_name: iu_xray
+tag_size: 48
+tag_topk: 5
+max_seq_length: 60
+threshold: 3
+num_workers: 4
+batch_size: 16
+# model config
+num_slot: 18
+d_model: 512
+d_ff: 512
+num_heads: 8
+num_layers: 6
+dropout: 0.1
+logit_layers: 1
+# trainer config
+n_gpu: 1
+epochs: 100
+save_period: 1
+log_period: 20
+# optimization config
+optim: Adam
+lr_ed: 0.0001
+lr_ve: 0.00005
+# Learning Rate Scheduler
+lr_scheduler: StepLR
+StepLR_step: 50
+StepLR_rate: 0.1

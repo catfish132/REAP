@@ -1,0 +1,33 @@
+# 常规训练 MIMIC 18类预训练模型
+_BASE_: MIM_base_cfg.yml
+# IO config
+image_dir: /ssd2/jyd_data/dataset/MIMIC/images/mimic_cxr/images/
+ann_path: /ssd2/jyd_data/dataset/MIMIC/annotation.json
+visual_path: /ssd2/jyd_data/dataset/MIMIC/TAG/new_mim_visual.npy
+tag_path: /ssd2/jyd_data/dataset/MIMIC/TAG/MIMIC_tag_id.npy
+save_dir: result/MIMIC/MIMIC_xrv18
+record_dir: records/MIMIC/
+description: normal MIMIC xrv18
+# data loader config
+dataset_name: mimic_cxr
+tag_size: 59
+tag_topk: 7
+batch_size: 32
+# model config
+num_slot: 18
+d_model: 512
+d_ff: 512
+num_heads: 8
+num_layers: 6
+dropout: 0.1
+# trainer config
+epochs: 30
+# optimization config
+optim: Adam
+lr_ed: 0.0002
+lr_ve: 0.0001
+# Learning Rate Scheduler
+lr_scheduler: StepLR
+StepLR_step: 1
+StepLR_rate: 0.8
+seed: 456789
